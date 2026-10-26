@@ -1,0 +1,68 @@
+site_name: CYB601 | Software and Systems Security
+theme:
+  name: material
+  #favicon: assets/logo.png
+
+  # Option for Footer
+  features:
+    - navigation.footer
+    - navigation.path
+
+  #color pallate for light and dark
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+nav:
+    - About : 'index.md'
+    - Syllabus: 'syllabus.md'
+    - Github: 'github.md'
+    - CYB601 Bastion: 'bastion.md'
+    - Week0: 'week0/index.md'
+    - Week1: 'week1/index.md'
+
+plugins:
+  - search
+  - glightbox
+
+
+markdown_extensions:
+  - footnotes
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences # Allows rich code blocks and nesting
+
+# Social Media Icons
+extra:
+  social:
+    # - icon: fontawesome/brands/linkedin 
+    #   link: https://linkedin.com/in/AatizGhimire
+    #   name: LinkedIn Profile
+    # - icon: fontawesome/brands/github 
+    #   link: https://github.com/AatizGhimire
+    #   name: Github Profile
+    # - icon: fontawesome/brands/researchgate
+    #   link: https://www.researchgate.net/profile/Aatiz-Ghimire
+    #   name: Research Gate Profile
+    # - icon: fontawesome/brands/google
+    #   link: https://scholar.google.com/citations?hl=en&user=ooQzSTcAAAAJ
+    #   name: Google Scholar's Profile
+    # - icon: fontawesome/brands/orcid
+    #   link: https://orcid.org/0000-0001-6580-9204
+    #   name: ORCID's Profile
+
+copyright: Copyright &copy; 2015 - 2025 Aatiz Ghimiré
