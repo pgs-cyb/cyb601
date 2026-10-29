@@ -3,7 +3,7 @@
 Week 1 teaches to think like security engineers, then has them build their own cluster in code and map its attack surface. CLO 1.
 
 ## Slides of Week 1
-![Week-1 Slide](week1/CYB601-Week1.pdf)
+[Week-1 Slide](week1/CYB601-Week1.pdf)
 
 ## Assignments
 
