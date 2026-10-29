@@ -2,6 +2,10 @@
 
 Week 0 gets every student onto the lab cloud, GitHub and Kubernetes before graded work starts. Nothing this week is graded, but every lab from Week 1 assumes it is done.
 
+## Slides of Week 0
+![Week-0 Slide](assets/CYB601-Week0.pdf)
+
+
 ## Assignment: readiness check
 
 Week 0 carries no points. Complete all four parts before the Week 1 live session.

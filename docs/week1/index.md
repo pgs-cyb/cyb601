@@ -2,6 +2,9 @@
 
 Week 1 teaches to think like security engineers, then has them build their own cluster in code and map its attack surface. CLO 1.
 
+## Slides of Week 1
+![Week-1 Slide](assets/CYB601-Week1.pdf)
+
 ## Assignments
 
 Week 1 has four pieces of work: the discussion, the rules of engagement, the Google Skills lab and Lab 1. All are due by Sunday at 11:59 p.m. Pacific, except the primary discussion post, due Thursday.
