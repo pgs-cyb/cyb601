@@ -30,6 +30,8 @@ nav:
     - Week0: 'week0/index.md'
     - Week1: 'week1/index.md'
     - Week2: 'week2/index.md'
+    - Week3: 'week3/index.md'
+    - Week4: 'week4/index.md'
 
 plugins:
   - search
