@@ -38,7 +38,7 @@ You measure the host, cluster and images against baselines, remediate as code, f
 
 The six layers you build:
 
-[embed: node/0c0edb07-4480]
+![](week4/lab4-defense-in-depth-layers.png)
 
 ### Part A – Host baseline and remediation (about 75 min)
 

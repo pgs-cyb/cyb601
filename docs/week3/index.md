@@ -60,7 +60,7 @@ Deploy Keycloak from the starter manifests, then configure a realm. Do this thro
 
 Put oauth2-proxy in front of the customer API so that reaching `/admin` requires the `admin` role. The starter `app/identity/oauth2-proxy.yaml` has the gaps marked. Here is the flow you are building.
 
-[embed: node/03ae8d41-aecb]
+![](week3/lab3-oauth2-proxy-flow.png)
 
 The proxy, not the API, talks to Keycloak and checks the role. The API only ever sees requests the proxy has already authorized.
 
