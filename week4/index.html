@@ -1,0 +1,1168 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../week3/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Week4 - CYB601 | Software and Systems Security</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-4-hardening-patching-cryptography-and-secrets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CYB601 | Software and Systems Security" class="md-header__button md-logo" aria-label="CYB601 | Software and Systems Security" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CYB601 | Software and Systems Security
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CYB601 | Software and Systems Security" class="md-nav__button md-logo" aria-label="CYB601 | Software and Systems Security" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    CYB601 | Software and Systems Security
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../syllabus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bastion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CYB601 Bastion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assignments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discussion-20-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discussion (20 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-skills-lab-20-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Skills lab (20 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-4-submission-40-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 4 submission (40 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summative-1-60-pts-see-the-next-section-for-the-full-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summative 1 (60 pts) – see the next section for the full brief.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on-lab-4-host-cluster-and-image-hardening-tls-and-secrets-40-pts-about-5-h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hands-on Lab 4: Host, cluster and image hardening, TLS and secrets (40 pts, about 5 h)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hands-on Lab 4: Host, cluster and image hardening, TLS and secrets (40 pts, about 5 h)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-a-host-baseline-and-remediation-about-75-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A – Host baseline and remediation (about 75 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-b-cluster-hardening-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B – Cluster hardening (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-c-restricted-pod-security-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C – Restricted Pod Security (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-d-harden-the-juice-shop-image-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part D – Harden the Juice Shop image (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-e-tls-about-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part E – TLS (about 30 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-f-secrets-about-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part F – Secrets (about 30 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deliverables-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deliverables checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summative-assessment-1-system-hardening-report-60-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summative Assessment 1: System Hardening Report (60 pts)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summative Assessment 1: System Hardening Report (60 pts)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assignments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discussion-20-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discussion (20 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-skills-lab-20-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Skills lab (20 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-4-submission-40-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 4 submission (40 pts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summative-1-60-pts-see-the-next-section-for-the-full-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summative 1 (60 pts) – see the next section for the full brief.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hands-on-lab-4-host-cluster-and-image-hardening-tls-and-secrets-40-pts-about-5-h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hands-on Lab 4: Host, cluster and image hardening, TLS and secrets (40 pts, about 5 h)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hands-on Lab 4: Host, cluster and image hardening, TLS and secrets (40 pts, about 5 h)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-a-host-baseline-and-remediation-about-75-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A – Host baseline and remediation (about 75 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-b-cluster-hardening-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B – Cluster hardening (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-c-restricted-pod-security-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C – Restricted Pod Security (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-d-harden-the-juice-shop-image-about-45-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part D – Harden the Juice Shop image (about 45 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-e-tls-about-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part E – TLS (about 30 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-f-secrets-about-30-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part F – Secrets (about 30 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deliverables-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deliverables checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summative-assessment-1-system-hardening-report-60-pts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summative Assessment 1: System Hardening Report (60 pts)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summative Assessment 1: System Hardening Report (60 pts)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-4-hardening-patching-cryptography-and-secrets">Week 4 – Hardening, patching, cryptography and secrets</h1>
+<p>Week 4 has students measure the host, cluster and images against baselines, fix them as code, and fix how the system handles keys and secrets. It also carries the first summative. CLOs 4 and 5.</p>
+<h2 id="assignments">Assignments</h2>
+<p>Week 4 has four pieces of work: the discussion, the Google Skills lab, Lab 4 and Summative 1. All are due by Sunday at 11:59 p.m. Pacific, except the primary discussion post, due Thursday. This is a heavier week; start the lab early, because the report depends on it.</p>
+<h3 id="discussion-20-pts">Discussion (20 pts)</h3>
+<p><strong>Prompt.</strong> Equifax had a patch policy and a vulnerability scanner, yet ran a known-vulnerable Apache Struts for months. Using the House report, identify the two process failures that mattered most. Then state a patch SLA you would defend for internet-facing systems, and what you would do when a patch cannot be applied in that time.</p>
+<p><strong>What a full-marks post does</strong></p>
+<ul>
+<li>Names two specific process failures with support from the House report, not general observations.</li>
+<li>States a concrete SLA by severity (for example, critical internet-facing within 15 days) and justifies it.</li>
+<li>Describes compensating controls for when a patch cannot be applied in time.</li>
+<li>Cites at least one primary source beyond Anderson, in APA 7, in at least 200 words.</li>
+<li>Replies to two classmates (50 words or more each), engaging with their SLA.</li>
+</ul>
+<h3 id="google-skills-lab-20-pts">Google Skills lab (20 pts)</h3>
+<p><em>Mitigating Security Vulnerabilities on Google Cloud.</em> Upload the badge or summary screen showing your name, plus 3–5 sentences linking vulnerability management to software resilience: how does Google's approach compare with the Trivy and kube-bench workflow you ran in Lab 4?</p>
+<h3 id="lab-4-submission-40-pts">Lab 4 submission (40 pts)</h3>
+<ul>
+<li>Push your work and the tag <code>lab4-submit</code>.</li>
+<li>Upload a 2-page lab report PDF: before-and-after numbers for host, cluster and image; what you remediated and what you deliberately did not; and the secret you found and how you handled it.</li>
+<li>Grading uses the engineering lab rubric.</li>
+</ul>
+<h3 id="summative-1-60-pts-see-the-next-section-for-the-full-brief">Summative 1 (60 pts) – see the next section for the full brief.</h3>
+<h2 id="hands-on-lab-4-host-cluster-and-image-hardening-tls-and-secrets-40-pts-about-5-h">Hands-on Lab 4: Host, cluster and image hardening, TLS and secrets (40 pts, about 5 h)</h2>
+<p>You measure the host, cluster and images against baselines, remediate as code, fix TLS, and move the planted secret out of Git and into encrypted storage. The numbers you record here are the evidence for Summative 1.</p>
+<p><strong>Before you start:</strong> your cluster from Lab 1; <code>gitleaks</code>, <code>testssl.sh</code> and <code>trivy</code> installed on your laptop or available on the VM; the Lab 4 starter additions applied. Optional: snapshot the VM first and delete the snapshot after you submit, since your one slot is needed before the capstone.</p>
+<p>The six layers you build:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="week4/lab4-defense-in-depth-layers.png" data-desc-position="bottom"><img alt="" src="week4/lab4-defense-in-depth-layers.png"></a></p>
+<h3 id="part-a-host-baseline-and-remediation-about-75-min">Part A – Host baseline and remediation (about 75 min)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Baseline</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>lynis
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>lynis<span class="w"> </span>audit<span class="w"> </span>system<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>lab4/lynis-before.txt
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"Hardening index|Warning|Suggestion"</span><span class="w"> </span>lab4/lynis-before.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span>
+</span></code></pre></div>
+<p>Record the hardening index and the ten highest-risk findings. Write an Ansible playbook <code>lab4/harden.yml</code> that fixes at least eight of them (SSH configuration, unused services, file permissions, kernel parameters). Run it, then rescan:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ansible-playbook<span class="w"> </span>-i<span class="w"> </span><span class="s2">"localhost,"</span><span class="w"> </span>-c<span class="w"> </span><span class="nb">local</span><span class="w"> </span>lab4/harden.yml
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>lynis<span class="w"> </span>audit<span class="w"> </span>system<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>lab4/lynis-after.txt
+</span></code></pre></div>
+<p>Report the index before and after.</p>
+<h3 id="part-b-cluster-hardening-about-45-min">Part B – Cluster hardening (about 45 min)</h3>
+<p>Rerun kube-bench (the Lab 1 command) and save <code>lab4/kube-bench-before.txt</code>. Fix at least five findings in the k3s configuration. Turn on API server audit logging, since Lab 6 ships that log:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># add to /etc/rancher/k3s/config.yaml, then restart k3s</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kube-apiserver-arg</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"audit-log-path=/var/log/k3s-audit.log"</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"audit-policy-file=/etc/rancher/k3s/audit-policy.yaml"</span>
+</span></code></pre></div>
+<p>The starter repository provides <code>audit-policy.yaml</code>. Rerun kube-bench to <code>lab4/kube-bench-after.txt</code> and compare the FAIL count against Week 1.</p>
+<h3 id="part-c-restricted-pod-security-about-45-min">Part C – Restricted Pod Security (about 45 min)</h3>
+<p>Label the application namespaces to enforce the restricted standard:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>ns<span class="w"> </span>shop<span class="w"> </span>api<span class="w"> </span>data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>pod-security.kubernetes.io/enforce<span class="o">=</span>restricted<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>pod-security.kubernetes.io/warn<span class="o">=</span>restricted<span class="w"> </span>--overwrite
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>shop<span class="w">     </span><span class="c1"># some pods now fail to schedule</span>
+</span></code></pre></div>
+<p>Fix each violation in the manifests: <code>runAsNonRoot</code>, a non-root <code>runAsUser</code>, <code>readOnlyRootFilesystem: true</code> with writable <code>emptyDir</code> mounts where the app needs them, <code>capabilities.drop: [ALL]</code>, <code>seccompProfile.type: RuntimeDefault</code> and <code>allowPrivilegeEscalation: false</code>. Save the patched manifests under <code>app/</code> and the evidence to <code>lab4/pod-security.txt</code>.</p>
+<h3 id="part-d-harden-the-juice-shop-image-about-45-min">Part D – Harden the Juice Shop image (about 45 min)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>trivy<span class="w"> </span>image<span class="w"> </span>--severity<span class="w"> </span>HIGH,CRITICAL<span class="w"> </span>JUICE_SHOP_IMAGE<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>lab4/trivy-before.txt
+</span></code></pre></div>
+<p>Write <code>lab4/Dockerfile</code> on a minimal base, as a non-root user, and build it with the starter repository's build workflow. Rescan and compare:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>trivy<span class="w"> </span>image<span class="w"> </span>--severity<span class="w"> </span>HIGH,CRITICAL<span class="w"> </span>YOUR_HARDENED_IMAGE<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>lab4/trivy-after.txt
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>grep<span class="w"> </span>-c<span class="w"> </span>CVE<span class="w"> </span>lab4/trivy-before.txt<span class="w"> </span>lab4/trivy-after.txt
+</span></code></pre></div>
+<h3 id="part-e-tls-about-30-min">Part E – TLS (about 30 min)</h3>
+<p>Install cert-manager from the starter manifests, create an internal CA issuer and a certificate for the shop hostname, and have Traefik serve TLS. Then test and remove weak settings:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>testssl.sh<span class="w"> </span>--quiet<span class="w"> </span>--protocols<span class="w"> </span>--ciphers<span class="w"> </span>https://SHOP_HOSTNAME<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>lab4/testssl.txt
+</span></code></pre></div>
+<p>Remove every weak protocol and cipher it flags, then rerun until the report is clean. Save the final report.</p>
+<h3 id="part-f-secrets-about-30-min">Part F – Secrets (about 30 min)</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gitleaks<span class="w"> </span>detect<span class="w"> </span>--source<span class="w"> </span>.<span class="w"> </span>--report-path<span class="w"> </span>lab4/gitleaks-before.json
+</span></code></pre></div>
+<p>The planted database password will appear. Remove it from the manifests, put it in a Kubernetes Secret, and turn on k3s secrets encryption:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># /etc/rancher/k3s/config.yaml</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">secrets-encryption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>Show the stored value is ciphertext, then rotate the key:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>k3s<span class="w"> </span>secrets-encrypt<span class="w"> </span>status
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>data<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>db-credentials<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.password}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"(value exists)"</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>...<span class="w"> </span><span class="c1"># or the documented datastore read, to show ciphertext at rest</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>sudo<span class="w"> </span>k3s<span class="w"> </span>secrets-encrypt<span class="w"> </span>rotate-keys
+</span></code></pre></div>
+<p>Rescan to confirm the secret is gone from the working tree, and record in your report that it was rotated, not just moved.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>add<span class="w"> </span>lab4/<span class="w"> </span>app/<span class="w"> </span>harden.yml
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Lab 4: host, cluster and image hardening, TLS, secrets"</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>push
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>git<span class="w"> </span>tag<span class="w"> </span>lab4-submit
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>lab4-submit
+</span></code></pre></div>
+<h3 id="deliverables-checklist">Deliverables checklist</h3>
+<ul>
+<li><code>lab4/lynis-before.txt</code>, <code>lynis-after.txt</code> and <code>harden.yml</code></li>
+<li><code>lab4/kube-bench-before.txt</code> and <code>kube-bench-after.txt</code></li>
+<li><code>lab4/pod-security.txt</code> and the patched manifests</li>
+<li><code>lab4/trivy-before.txt</code>, <code>trivy-after.txt</code> and <code>Dockerfile</code></li>
+<li><code>lab4/testssl.txt</code>, clean of weak protocols and ciphers</li>
+<li><code>lab4/gitleaks-before.json</code> and a note that the secret was rotated</li>
+<li><code>lab4/exceptions.md</code>: findings deliberately not fixed, each with a reason</li>
+<li>Tag <code>lab4-submit</code> pushed and report uploaded</li>
+</ul>
+<h2 id="summative-assessment-1-system-hardening-report-60-pts">Summative Assessment 1: System Hardening Report (60 pts)</h2>
+<p><strong>Due Sunday of Week 4, 11:59 p.m. Pacific. 3–4 pages plus appendix, APA 7. CLO 4.</strong></p>
+<p>Write a secure design specification for the host, cluster and workloads you hardened in Lab 4. This is not a lab log; it is the document you would hand an architect to justify the design. Write it in your own words from your own evidence. AI may help with wording and error messages, but the analysis, risk ratings and conclusions are yours and are disclosed in the report.</p>
+<h3 id="required-sections">Required sections</h3>
+<ol>
+<li><strong>Executive summary</strong> (about half a page): the system, the top three residual risks, and what you recommend.</li>
+<li><strong>Baselines chosen and why</strong>: which CIS profiles and benchmarks you used for host, cluster and image, and why they fit a production retailer.</li>
+<li><strong>Defense-in-depth layers</strong>: each of the six layers, the control at it, and the attack-tree path it closes. Reference your Lab 2 register.</li>
+<li><strong>Least-privilege decisions</strong>: the restricted Pod Security settings and the RBAC posture, and what each denies.</li>
+<li><strong>Before-and-after metrics</strong>: a table of the Lynis index, kube-bench FAIL count, image CVE count and TLS grade, before and after.</li>
+<li><strong>Exceptions</strong>: findings you did not fix, each with a compensating control and a named risk owner.</li>
+<li><strong>Patch management policy</strong>: SLAs by severity for internet-facing and internal systems, and what you do when a patch cannot be applied in time.</li>
+<li><strong>Key and secret lifecycle</strong>: how secrets are generated, stored, injected, encrypted and rotated, using your Lab 4 evidence.</li>
+<li><strong>Appendix</strong>: links to the repository evidence (commit or tag) for every claim.</li>
+</ol>
+<h3 id="expected-results">Expected results</h3>
+<ul>
+<li>Lynis hardening index typically rises from the 50s to the 70s after eight fixes.</li>
+<li>kube-bench FAIL count drops noticeably once audit logging and a few defaults are fixed.</li>
+<li>The Juice Shop image CVE count falls sharply on a minimal base; exact numbers vary with the scan date, so grade the delta and the method, not an absolute target.</li>
+<li>testssl.sh should end with no weak protocols and a clean cipher list.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../week3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Week3">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Week3
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2015 - 2025 Aatiz Ghimiré
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.path"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
